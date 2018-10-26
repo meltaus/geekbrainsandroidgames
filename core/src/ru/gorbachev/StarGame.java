@@ -37,24 +37,13 @@ public class StarGame extends ApplicationAdapter implements InputProcessor {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
+		//Отрисовывем задник
 		backSprite.setSize(1024, 1024);
 		backSprite.setPosition(0,0f);
 		backSprite.draw(batch);
-		if (currentPosition != nextPosition) {
-			int tmpX = 0;
-			int tmpY = 0;
-			if (nextPosition.x != currentPosition.x && nextPosition.x > currentPosition.x) {
-				tmpX++;
-			} else if (nextPosition.x != currentPosition.x && nextPosition.x < currentPosition.x) {
-				tmpX--;
-			}
-			if (nextPosition.y != currentPosition.y && nextPosition.y > currentPosition.y) {
-				tmpY++;
-			} else if (nextPosition.y != currentPosition.y && nextPosition.y < currentPosition.y) {
-				tmpY--;
-			}
-			currentPosition.add(new Vector2(tmpX,tmpY));
-		}
+		//Обрабатываем изменение позиции объекта
+		changePosition();
+		//Отрисовывем объект
 		batch.draw(img, currentPosition.x, currentPosition.y);
 		batch.end();
 	}
@@ -120,5 +109,24 @@ public class StarGame extends ApplicationAdapter implements InputProcessor {
 	@Override
 	public boolean scrolled(int amount) {
 		return false;
+	}
+
+	//Изменение позиции объекта
+	private void changePosition() {
+		if (currentPosition != nextPosition) {
+			int tmpX = 0;
+			int tmpY = 0;
+			if (nextPosition.x != currentPosition.x && nextPosition.x > currentPosition.x) {
+				tmpX++;
+			} else if (nextPosition.x != currentPosition.x && nextPosition.x < currentPosition.x) {
+				tmpX--;
+			}
+			if (nextPosition.y != currentPosition.y && nextPosition.y > currentPosition.y) {
+				tmpY++;
+			} else if (nextPosition.y != currentPosition.y && nextPosition.y < currentPosition.y) {
+				tmpY--;
+			}
+			currentPosition.add(new Vector2(tmpX,tmpY));
+		}
 	}
 }
