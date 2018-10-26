@@ -1,27 +1,33 @@
 package ru.gorbachev.object;
 
+import com.badlogic.gdx.math.Vector2;
+
 public class StarShip {
-    private int startPositionX;
-    private int startPositionY;
+    private int positionX;
+    private int positionY;
 
-    public StarShip(int startPositionX, int startPositionY) {
-        this.startPositionX = startPositionX;
-        this.startPositionY = startPositionY;
+    public StarShip(int positionX, int positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
     }
 
-    public int getStartPositionX() {
-        return startPositionX;
+    public int getPositionX() {
+        return positionX;
     }
 
-    public void setStartPositionX(int startPositionX) {
-        this.startPositionX = startPositionX;
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
     }
 
-    public int getStartPositionY() {
-        return startPositionY;
+    public int getPositionY() {
+        return positionY;
     }
 
-    public void setStartPositionY(int startPositionY) {
-        this.startPositionY = startPositionY;
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
+    }
+
+    public Vector2 getPosition() {
+        return new Vector2(positionX, positionY);
     }
 }
