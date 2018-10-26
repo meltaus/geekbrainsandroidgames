@@ -1,6 +1,6 @@
 package ru.gorbachev.logic;
 
-public class InputProcessor implements com.badlogic.gdx.InputProcessor {
+public class InputProcessorStarGame implements com.badlogic.gdx.InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         return false;
