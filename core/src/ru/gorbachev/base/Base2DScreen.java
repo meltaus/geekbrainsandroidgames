@@ -81,7 +81,19 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        System.out.println("keyDown keycode = " + keycode);
+        if (keycode == 22) {
+            touch.add(new Vector2(0.1f,0));
+        }
+        if (keycode == 19) {
+            touch.add(new Vector2(0,0.1f));
+        }
+        if (keycode == 20) {
+            touch.add(new Vector2(0,-0.1f));
+        }
+        if (keycode == 21) {
+            touch.add(new Vector2(-0.1f,0));
+        }
+        System.out.println(keycode);
         return false;
     }
 
@@ -99,6 +111,8 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+//        touch.set(new Vector2(screenX,Gdx.graphics.getHeight()-screenY));
+//        System.out.println(touch);
         touch.set(screenX, screenBounds.getHeight() - screenY).mul(screenToWorld);
         touchDown(touch, pointer);
         return false;
