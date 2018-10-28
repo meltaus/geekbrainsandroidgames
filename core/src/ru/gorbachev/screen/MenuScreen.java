@@ -1,4 +1,6 @@
 package ru.gorbachev.screen;
 
-public class MenuScreen {
+import ru.gorbachev.base.Base2DScreen;
+
+public class MenuScreen extends Base2DScreen {
 }
