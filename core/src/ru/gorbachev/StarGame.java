@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import ru.gorbachev.object.StarShip;
 
-public class StarGame extends ApplicationAdapter implements InputProcessor {
+public class StarGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	static Texture backtexture;
@@ -25,7 +25,6 @@ public class StarGame extends ApplicationAdapter implements InputProcessor {
 		starShip = new StarShip(0, 0);
 		currentPosition = starShip.getPosition();
 		nextPosition = new Vector2(0,0);
-		Gdx.input.setInputProcessor(this);
 		batch = new SpriteBatch();
 		img = new Texture("spaceshipspr.png");
 		backtexture = new Texture(Gdx.files.internal("background.png"));
@@ -54,62 +53,7 @@ public class StarGame extends ApplicationAdapter implements InputProcessor {
 		img.dispose();
 	}
 
-	@Override
-	public boolean keyDown(int keycode) {
-		if (keycode == 22) {
-			nextPosition.add(new Vector2(10,0));
-		}
-		if (keycode == 19) {
-			nextPosition.add(new Vector2(0,10));
-		}
-		if (keycode == 20 && currentPosition.y > 10) {
-			nextPosition.add(new Vector2(0,-10));
-		}
-		if (keycode == 21 && currentPosition.x > 10) {
-			nextPosition.add(new Vector2(-10,0));
-		}
-		System.out.println(keycode);
-		return false;
-	}
 
-	@Override
-	public boolean keyUp(int keycode) {
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-//		System.out.println("screenX = " + screenX +
-//		" screenY = " + (Gdx.graphics.getHeight()-screenY));
-		nextPosition.set(new Vector2(screenX,Gdx.graphics.getHeight()-screenY));
-		System.out.println(nextPosition);
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int amount) {
-		return false;
-	}
 
 	//Изменение позиции объекта
 	private void changePosition() {
