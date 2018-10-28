@@ -1,4 +1,4 @@
 package ru.gorbachev.math;
 
-public class MatrixUtil {
+public class MatrixUtils {
 }
