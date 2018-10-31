@@ -1,5 +1,6 @@
 package ru.gorbachev.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,17 +11,24 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import ru.gorbachev.Start2DGame;
 import ru.gorbachev.base.Base2DScreen;
 
 public class MenuScreen extends Base2DScreen {
     private static float BUTTON_WIDTH = 400f;
     private static float BUTTON_HEIGHT = 100f;
 
+    private Start2DGame start2DGame;
+
     private TextureAtlas atlas;
     private Sprite backgroudRegion;
 
     private Sprite startButtonSprite;
     private Sprite exitButtonSprite;
+
+    public MenuScreen (Start2DGame start2DGame) {
+        this.start2DGame = start2DGame;
+    }
 
     @Override
     public void show() {
@@ -57,9 +65,9 @@ public class MenuScreen extends Base2DScreen {
     @Override
     public boolean touchDown(Vector2 touch, int pointer) {
         if(Gdx.input.justTouched()) {
-            // обработка касания по кнопке Stare
+            // обработка касания по кнопке Start
             if((touch.x>=startButtonSprite.getX()) && touch.x<= (startButtonSprite.getX()+startButtonSprite.getWidth()) && (touch.y>=startButtonSprite.getY()) && touch.y<=(startButtonSprite.getY()+startButtonSprite.getHeight()) ){
-                System.out.println("Start");
+                start2DGame.setScreen(new GameScreen());
             }
             // обработка касания по кнопке Exit
             else if((touch.x>=exitButtonSprite.getX()) && touch.x<= (exitButtonSprite.getX()+exitButtonSprite.getWidth()) && (touch.y>=exitButtonSprite.getY()) && touch.y<=(exitButtonSprite.getY()+exitButtonSprite.getHeight()) ){
