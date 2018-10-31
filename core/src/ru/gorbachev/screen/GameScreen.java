@@ -4,28 +4,29 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 import ru.gorbachev.base.Base2DScreen;
 
 public class GameScreen extends Base2DScreen {
 
-    private Texture img;
-    static Texture backtexture;
-    static Sprite backSprite;
-
     private Vector2 pos;
     private Vector2 touch;
     private Vector2 v;
     private Vector2 buf;
 
+    private TextureAtlas atlas;
+    private TextureAtlas.AtlasRegion shipRedion;
+    private TextureAtlas.AtlasRegion backgroudRegion;
+
 
     @Override
     public void show() {
         super.show();
-        img = new Texture("spaceshipspr.png");
-        backtexture = new Texture(Gdx.files.internal("background.png"));
-        backSprite = new Sprite(backtexture);
+        atlas = new TextureAtlas(Gdx.files.internal("StarGame.atlas"));
+        shipRedion = atlas.findRegion("spaceshipspr");
+        backgroudRegion = atlas.findRegion("background");
         pos = new Vector2(0,0);
         touch = new Vector2();
         v = new Vector2();
@@ -43,15 +44,14 @@ public class GameScreen extends Base2DScreen {
             pos.set(touch);
         }
         batch.begin();
-        batch.draw(backtexture, -1, -1, 2f, 2f);
-        batch.draw(img, pos.x, pos.y, 0.1f, 0.1f);
+        batch.draw(backgroudRegion, -1, -1, 2f, 2f);
+        batch.draw(shipRedion, pos.x, pos.y, 0.1f, 0.1f);
         batch.end();
 
     }
 
     @Override
     public void dispose() {
-        img.dispose();
         super.dispose();
     }
 
