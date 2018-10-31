@@ -104,8 +104,6 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-//        touch.set(new Vector2(screenX,Gdx.graphics.getHeight()-screenY));
-//        System.out.println(touch);
         touch.set(screenX, screenBounds.getHeight() - screenY).mul(screenToWorld);
         touchDown(touch, pointer);
         return false;
@@ -123,6 +121,7 @@ public class Base2DScreen implements Screen, InputProcessor {
     }
 
     public boolean touchUp(Vector2 touch, int pointer) {
+        System.out.println("Screenx = " + touch);
         return false;
     }
 
