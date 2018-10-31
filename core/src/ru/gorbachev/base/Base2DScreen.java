@@ -49,8 +49,8 @@ public class Base2DScreen implements Screen, InputProcessor {
         screenBounds.setBottom(0);
 
         float aspect = width / (float) height;
-        worldBounds.setHeight(1f);
-        worldBounds.setWidth(1f*aspect);
+        worldBounds.setHeight(1000f);
+        worldBounds.setWidth(1000f*aspect);
         MatrixUtils.calcTransitionMatrix(worldToGl, worldBounds, glBounds);
         batch.setProjectionMatrix(worldToGl);
         MatrixUtils.calcTransitionMatrix(screenToWorld, screenBounds, worldBounds);
@@ -76,19 +76,6 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (keycode == 22) {
-            touch.add(new Vector2(0.1f,0));
-        }
-        if (keycode == 19) {
-            touch.add(new Vector2(0,0.1f));
-        }
-        if (keycode == 20) {
-            touch.add(new Vector2(0,-0.1f));
-        }
-        if (keycode == 21) {
-            touch.add(new Vector2(-0.1f,0));
-        }
-        System.out.println(keycode);
         return false;
     }
 

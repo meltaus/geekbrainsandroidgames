@@ -44,8 +44,8 @@ public class GameScreen extends Base2DScreen {
             pos.set(touch);
         }
         batch.begin();
-        batch.draw(backgroudRegion, -1, -1, 2f, 2f);
-        batch.draw(shipRedion, pos.x, pos.y, 0.1f, 0.1f);
+        batch.draw(backgroudRegion, -1000, -1000, 2000f, 2000f);
+        batch.draw(shipRedion, pos.x, pos.y, 100f, 100f);
         batch.end();
 
     }
