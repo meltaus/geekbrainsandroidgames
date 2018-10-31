@@ -15,7 +15,7 @@ public class StarGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("background.png");
 		region = new TextureRegion(img,144, 20, 50, 30);
 	}
 

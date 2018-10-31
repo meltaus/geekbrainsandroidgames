@@ -26,7 +26,6 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     @Override
     public void show() {
-        System.out.println("show");
         this.batch = new SpriteBatch();
         Gdx.input.setInputProcessor(this);
         this.screenBounds = new Rect();
@@ -59,23 +58,19 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     @Override
     public void pause() {
-        System.out.println("pause");
     }
 
     @Override
     public void resume() {
-        System.out.println("resume");
     }
 
     @Override
     public void hide() {
-        System.out.println("hide");
         dispose();
     }
 
     @Override
     public void dispose() {
-        System.out.println("dispose");
         batch.dispose();
     }
 
@@ -99,13 +94,11 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        System.out.println("keyUp keycode = " + keycode);
         return false;
     }
 
     @Override
     public boolean keyTyped(char character) {
-        System.out.println("keyTyped character = " + character);
         return false;
     }
 
@@ -119,7 +112,6 @@ public class Base2DScreen implements Screen, InputProcessor {
     }
 
     public boolean touchDown(Vector2 touch, int pointer) {
-        System.out.println("touchDown touch.x = " + touch.x + " touch.y = " + touch.y);
         return false;
     }
 
@@ -131,14 +123,11 @@ public class Base2DScreen implements Screen, InputProcessor {
     }
 
     public boolean touchUp(Vector2 touch, int pointer) {
-        System.out.println("touchUp touch.x = " + touch.x + " touch.y = " + touch.y);
-
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        System.out.println("touchDragged screenX = " + screenX + " screenY = " + screenY);
         return false;
     }
 

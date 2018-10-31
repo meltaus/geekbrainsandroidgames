@@ -18,7 +18,6 @@ public class InputProcessorStarGame implements com.badlogic.gdx.InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        System.out.println("screenX = " + screenX + " screenY = " + screenY);
         return false;
     }
 
