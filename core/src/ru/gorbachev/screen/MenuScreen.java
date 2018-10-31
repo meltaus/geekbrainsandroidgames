@@ -19,6 +19,7 @@ public class MenuScreen extends Base2DScreen {
     private TextureAtlas atlas;
     private TextureAtlas.AtlasRegion startRegion;
     private TextureAtlas.AtlasRegion exitRegion;
+    private TextureAtlas.AtlasRegion backgroudRegion;
 
 
 
@@ -28,6 +29,7 @@ public class MenuScreen extends Base2DScreen {
         atlas = new TextureAtlas(Gdx.files.internal("StarGame.atlas"));
         startRegion = atlas.findRegion("Start");
         exitRegion = atlas.findRegion("Exit");
+        backgroudRegion = atlas.findRegion("background");
     }
 
     @Override
@@ -35,6 +37,7 @@ public class MenuScreen extends Base2DScreen {
         super.render(delta);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
+        batch.draw(backgroudRegion, -1, -1, 2f, 2f);
         batch.draw(startRegion, -0.2f, 0.1f, 0.4f, 0.1f);
         batch.draw(exitRegion, -0.2f, 0, 0.4f, 0.1f);
         batch.end();
@@ -48,8 +51,6 @@ public class MenuScreen extends Base2DScreen {
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer) {
-        this.touch = touch;
-        v.set(touch.cpy().sub(pos).scl(0.01f));
         return false;
     }
 }
