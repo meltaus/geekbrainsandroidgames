@@ -6,28 +6,36 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import ru.gorbachev.base.Base2DScreen;
 
 public class MenuScreen extends Base2DScreen {
-
-    private Vector2 posStart;
-    private Vector2 posExit;
+    private static float BUTTON_WIDTH = 400f;
+    private static float BUTTON_HEIGHT = 100f;
 
     private TextureAtlas atlas;
-    private TextureAtlas.AtlasRegion startRegion;
-    private TextureAtlas.AtlasRegion exitRegion;
-    private TextureAtlas.AtlasRegion backgroudRegion;
+    private Sprite backgroudRegion;
+
+    private Sprite startButtonSprite;
+    private Sprite exitButtonSprite;
 
     @Override
     public void show() {
         super.show();
         atlas = new TextureAtlas(Gdx.files.internal("StarGame.atlas"));
-        startRegion = atlas.findRegion("Start");
-        exitRegion = atlas.findRegion("Exit");
-        backgroudRegion = atlas.findRegion("background");
-        posStart = new Vector2(-0.2f, 0.1f);
-        posExit = new Vector2(-0.2f, 0f);
+        backgroudRegion = new Sprite(atlas.findRegion("background"));
+        startButtonSprite = new Sprite(atlas.findRegion("Start"));
+        exitButtonSprite = new Sprite(atlas.findRegion("Exit"));
+
+        backgroudRegion.setSize(2000, 2000);
+        startButtonSprite.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        exitButtonSprite.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        backgroudRegion.setPosition(-1000, -1000);
+        startButtonSprite.setPosition(-BUTTON_WIDTH/2,0);
+        exitButtonSprite.setPosition(-BUTTON_WIDTH/2,-BUTTON_HEIGHT);
     }
 
     @Override
@@ -35,9 +43,9 @@ public class MenuScreen extends Base2DScreen {
         super.render(delta);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        batch.draw(backgroudRegion, -1000, -1000, 2000f, 2000f);
-//        batch.draw(startRegion, posStart.x, posStart.y, 0.4f, 0.1f);
-//        batch.draw(exitRegion, posExit.x, posExit.y, 0.4f, 0.1f);
+        backgroudRegion.draw(batch);
+        startButtonSprite.draw(batch);
+        exitButtonSprite.draw(batch);
         batch.end();
     }
 
@@ -48,6 +56,20 @@ public class MenuScreen extends Base2DScreen {
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer) {
+        if(Gdx.input.justTouched()) {
+            // обработка касания по кнопке Stare
+            if((touch.x>=startButtonSprite.getX()) && touch.x<= (startButtonSprite.getX()+startButtonSprite.getWidth()) && (touch.y>=startButtonSprite.getY()) && touch.y<=(startButtonSprite.getY()+startButtonSprite.getHeight()) ){
+                System.out.println("Start");
+            }
+            // обработка касания по кнопке Exit
+            else if((touch.x>=exitButtonSprite.getX()) && touch.x<= (exitButtonSprite.getX()+exitButtonSprite.getWidth()) && (touch.y>=exitButtonSprite.getY()) && touch.y<=(exitButtonSprite.getY()+exitButtonSprite.getHeight()) ){
+                Gdx.app.exit(); // выход из приложения
+            }
+        }
         return false;
+    }
+
+    private void showMenu() {
+
     }
 }
