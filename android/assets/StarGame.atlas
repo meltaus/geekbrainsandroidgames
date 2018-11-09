@@ -1,0 +1,33 @@
+
+StarGame.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background
+  rotate: false
+  xy: 1, 309
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+Exit
+  rotate: false
+  xy: 1, 175
+  size: 628, 132
+  orig: 628, 132
+  offset: 0, 0
+  index: -1
+Start
+  rotate: false
+  xy: 1027, 1201
+  size: 628, 132
+  orig: 628, 132
+  offset: 0, 0
+  index: -1
+spaceshipspr
+  rotate: false
+  xy: 1, 1
+  size: 108, 172
+  orig: 108, 172
+  offset: 0, 0
+  index: -1
