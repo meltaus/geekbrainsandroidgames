@@ -3,7 +3,6 @@ package ru.gorbachev.base;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Matrix3;
@@ -12,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import ru.gorbachev.math.MatrixUtils;
 import ru.gorbachev.math.Rect;
+import ru.gorbachev.object.Background;
 
 public class Base2DScreen implements Screen, InputProcessor {
 
@@ -25,12 +25,13 @@ public class Base2DScreen implements Screen, InputProcessor {
     private Matrix3 screenToWorld;
 
     protected static TextureAtlas backgroundAtlas;
-    protected static Sprite background;
 
     private Vector2 touch;
 
     protected float screenWeight;
     protected float screenHeight;
+
+    protected Background background;
 
     @Override
     public void show() {
