@@ -1,4 +1,23 @@
 package ru.gorbachev.object;
 
-public class PlayerShip {
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
+
+import ru.gorbachev.base.StarShip;
+
+public class PlayerShip extends StarShip {
+
+    public PlayerShip(Sprite shipTexture, Vector2 position,
+                  float width, float height, float resize_factor) {
+        this.shipTexture = shipTexture;
+        this.position = position;
+        this.width = width;
+        this.height = height;
+        this.resize_factor = resize_factor;
+
+        if (position.y <= height) {
+            initShip();
+        }
+    }
+
 }

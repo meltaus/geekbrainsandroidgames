@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class StarShip {
-    private Sprite shipTexture;
-    private Vector2 position;
-    private float width;
-    private float height;
-    private float resize_factor;
+    protected Sprite shipTexture;
+    protected Vector2 position;
+    protected float width;
+    protected float height;
+    protected float resize_factor;
 
     protected void initShip() {
         float shipWidth = width *resize_factor;
