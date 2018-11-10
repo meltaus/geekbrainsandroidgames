@@ -45,6 +45,9 @@ public class GameScreen extends Base2DScreen {
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer) {
+        if (Gdx.input.justTouched()) {
+            playerShip.moveShip(touch, 1);
+        }
         return false;
     }
 }

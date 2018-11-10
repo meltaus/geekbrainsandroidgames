@@ -10,6 +10,8 @@ public class StarShip {
     protected float width;
     protected float height;
     protected float resize_factor;
+    private Vector2 newPosition;
+    private float deltaV;
 
     protected void initShip() {
         float shipWidth = width *resize_factor;
@@ -34,9 +36,33 @@ public class StarShip {
         }
         shipTexture.setSize(shipWidth, shipHeight);
         shipTexture.setPosition(position.x, position.y);
+        newPosition = position;
     }
 
     public void render(SpriteBatch batch) {
         shipTexture.draw(batch);
+    }
+
+    private void setSubPosition() {
+        float x = 0,y = 0;
+        if (position.x < newPosition.x) {
+            x = 5 * deltaV;
+        }
+        if (position.x > newPosition.x) {
+            x = -5 * deltaV;
+        }
+        if (position.y < newPosition.y) {
+            y = 5 * deltaV;
+        }
+        if (position.y > newPosition.y) {
+            y = -5 * deltaV;
+        }
+        Vector2 tmp = position;
+        tmp.sub(x,y);
+    }
+
+    public void moveShip(Vector2 newPosition, float deltaV) {
+        this.newPosition = newPosition;
+        this.deltaV = deltaV;
     }
 }
