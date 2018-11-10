@@ -8,15 +8,15 @@ public class Button {
 
     private Sprite buttonTexture;
     private Vector2 position;
-    private float weight;
+    private float width;
     private float height;
     private float resize_factor;
 
     public Button(Sprite buttonTexture, Vector2 position,
-                  float weight, float height, float resize_factor) {
+                  float width, float height, float resize_factor) {
         this.buttonTexture = buttonTexture;
         this.position = position;
-        this.weight = weight;
+        this.width = width;
         this.height = height;
         this.resize_factor = resize_factor;
 
@@ -24,7 +24,7 @@ public class Button {
     }
 
     private void initButton() {
-        buttonTexture.setSize(weight*resize_factor, height*resize_factor);
+        buttonTexture.setSize(width *resize_factor, height*resize_factor);
         buttonTexture.setPosition(position.x, position.y);
     }
 

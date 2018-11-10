@@ -6,21 +6,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Background {
 
     private Sprite backgroundTexture;
-    private float weight;
+    private float width;
     private float height;
 
     public Background (Sprite backgroundTexture,
-                  float weight, float height) {
+                       float width, float height) {
         this.backgroundTexture = backgroundTexture;
-        this.weight = weight;
+        this.width = width;
         this.height = height;
 
         initButton();
     }
 
     private void initButton() {
-        backgroundTexture.setSize(weight*2, height*2);
-        backgroundTexture.setPosition(-weight, -height);
+        backgroundTexture.setSize(width *2, height*2);
+        backgroundTexture.setPosition(-width, -height);
     }
 
     public void render(SpriteBatch batch) {

@@ -57,16 +57,14 @@ public class MenuScreen extends Base2DScreen {
     public boolean touchDown(Vector2 touch, int pointer) {
         if (Gdx.input.justTouched()) {
             if (startButton.isMy(touch)) {
+                startButton.getButtonTexture().setScale(0.9f, 1f);
                 System.out.println("Start");
             }
             if (exitButton.isMy(touch)) {
-                System.out.println("Exit");
+                exitButton.getButtonTexture().setScale(0.9f, 1f);
+                Gdx.app.exit();
             }
         }
         return false;
-    }
-
-    private void showMenu() {
-
     }
 }
