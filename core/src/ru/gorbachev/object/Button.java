@@ -35,4 +35,14 @@ public class Button {
     public Sprite getButtonTexture() {
         return buttonTexture;
     }
+
+    public boolean isMy(Vector2 touch) {
+        boolean result = false;
+        if (touch.x >= buttonTexture.getX() && touch.x <= (buttonTexture.getX() + buttonTexture.getWidth())) {
+            if (touch.y >= buttonTexture.getY() && touch.y <= (buttonTexture.getY() + buttonTexture.getHeight())) {
+                result = true;
+            }
+        }
+        return result;
+    }
 }
