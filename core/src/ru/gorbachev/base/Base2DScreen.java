@@ -3,7 +3,9 @@ package ru.gorbachev.base;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
@@ -15,14 +17,20 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     protected SpriteBatch batch;
 
-    protected Rect screenBounds; // границы области рисования в пикселях
-    protected Rect worldBounds; // границы проекции мировых координат
+    private Rect screenBounds; // границы области рисования в пикселях
+    private Rect worldBounds; // границы проекции мировых координат
     private Rect glBounds; // границы проэкции world - gl
 
-    protected Matrix4 worldToGl;
-    protected Matrix3 screenToWorld;
+    private Matrix4 worldToGl;
+    private Matrix3 screenToWorld;
+
+    protected static TextureAtlas backgroundAtlas;
+    protected static Sprite background;
 
     private Vector2 touch;
+
+    protected float screenWeight;
+    protected float screenHeight;
 
     @Override
     public void show() {
@@ -34,6 +42,9 @@ public class Base2DScreen implements Screen, InputProcessor {
         this.worldToGl = new Matrix4();
         this.screenToWorld = new Matrix3();
         this.touch = new Vector2();
+        backgroundAtlas = new TextureAtlas(Gdx.files.internal("background.atlas"));
+        screenHeight = 1000f;
+        screenWeight = 1000f;
     }
 
     @Override
@@ -49,8 +60,8 @@ public class Base2DScreen implements Screen, InputProcessor {
         screenBounds.setBottom(0);
 
         float aspect = width / (float) height;
-        worldBounds.setHeight(1000f);
-        worldBounds.setWidth(1000f*aspect);
+        worldBounds.setHeight(screenHeight);
+        worldBounds.setWidth(screenWeight*aspect);
         MatrixUtils.calcTransitionMatrix(worldToGl, worldBounds, glBounds);
         batch.setProjectionMatrix(worldToGl);
         MatrixUtils.calcTransitionMatrix(screenToWorld, screenBounds, worldBounds);
@@ -107,7 +118,7 @@ public class Base2DScreen implements Screen, InputProcessor {
         return false;
     }
 
-    public boolean touchUp(Vector2 touch, int pointer) {
+    private boolean touchUp(Vector2 touch, int pointer) {
         System.out.println("Screenx = " + touch);
         return false;
     }

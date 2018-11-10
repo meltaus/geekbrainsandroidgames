@@ -1,18 +1,14 @@
 package ru.gorbachev.screen;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import ru.gorbachev.Start2DGame;
 import ru.gorbachev.base.Base2DScreen;
+import ru.gorbachev.object.Button;
 
 public class MenuScreen extends Base2DScreen {
     private static float BUTTON_WIDTH = 400f;
@@ -20,11 +16,9 @@ public class MenuScreen extends Base2DScreen {
 
     private Start2DGame start2DGame;
 
-    private TextureAtlas atlas;
-    private Sprite backgroudRegion;
-
-    private Sprite startButtonSprite;
-    private Sprite exitButtonSprite;
+    private Button startButton;
+    private Button exitButton;
+    private TextureAtlas buttonAtlas;
 
     public MenuScreen (Start2DGame start2DGame) {
         this.start2DGame = start2DGame;
@@ -33,17 +27,17 @@ public class MenuScreen extends Base2DScreen {
     @Override
     public void show() {
         super.show();
-        atlas = new TextureAtlas(Gdx.files.internal("StarGame.atlas"));
-        backgroudRegion = new Sprite(atlas.findRegion("background"));
-        startButtonSprite = new Sprite(atlas.findRegion("Start"));
-        exitButtonSprite = new Sprite(atlas.findRegion("Exit"));
+        background = new Sprite(backgroundAtlas.findRegion("deepspace1"));
 
-        backgroudRegion.setSize(2000, 2000);
-        startButtonSprite.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        exitButtonSprite.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        backgroudRegion.setPosition(-1000, -1000);
-        startButtonSprite.setPosition(-BUTTON_WIDTH/2,0);
-        exitButtonSprite.setPosition(-BUTTON_WIDTH/2,-BUTTON_HEIGHT);
+        buttonAtlas = new TextureAtlas(Gdx.files.internal("buttonYelow.atlas"));
+        startButton = new Button(new Sprite(buttonAtlas.findRegion("StartButton")),
+                new Vector2(-150,0) ,screenWeight*4, screenHeight, 0.09f);
+        exitButton = new Button(new Sprite(buttonAtlas.findRegion("ExitButton")),
+                new Vector2(-150, 1.5f * (startButton.getButtonTexture().getY() - startButton.getButtonTexture().getHeight())),
+                screenWeight*4, screenHeight, 0.09f);
+
+        background.setSize(screenWeight*2, screenHeight*2);
+        background.setPosition(-screenWeight, -screenHeight);
     }
 
     @Override
@@ -51,9 +45,9 @@ public class MenuScreen extends Base2DScreen {
         super.render(delta);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        backgroudRegion.draw(batch);
-        startButtonSprite.draw(batch);
-        exitButtonSprite.draw(batch);
+        background.draw(batch);
+        startButton.render(batch);
+        exitButton.render(batch);
         batch.end();
     }
 
@@ -64,16 +58,6 @@ public class MenuScreen extends Base2DScreen {
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer) {
-        if(Gdx.input.justTouched()) {
-            // обработка касания по кнопке Start
-            if((touch.x>=startButtonSprite.getX()) && touch.x<= (startButtonSprite.getX()+startButtonSprite.getWidth()) && (touch.y>=startButtonSprite.getY()) && touch.y<=(startButtonSprite.getY()+startButtonSprite.getHeight()) ){
-                start2DGame.setScreen(new GameScreen());
-            }
-            // обработка касания по кнопке Exit
-            else if((touch.x>=exitButtonSprite.getX()) && touch.x<= (exitButtonSprite.getX()+exitButtonSprite.getWidth()) && (touch.y>=exitButtonSprite.getY()) && touch.y<=(exitButtonSprite.getY()+exitButtonSprite.getHeight()) ){
-                Gdx.app.exit(); // выход из приложения
-            }
-        }
         return false;
     }
 
