@@ -16,19 +16,19 @@ public class StarShip {
         float shipHeight = height*resize_factor;
         position.x = position.x - shipWidth/2;
         position.y = position.y - shipHeight/2;
-        if (position.x < -width) {
+        if (position.x <= -width) {
             float tmp = -position.x - width;
             position.x = position.x + tmp;
         }
-        if (position.x > width) {
+        if (position.x >= width) {
             float tmp = position.x - width;
             position.x = position.x - tmp;
         }
-        if (position.y < -height) {
+        if ((position.y - shipHeight/2) <= -height) {
             float tmp = -position.y - height;
             position.y = position.y + tmp;
         }
-        if (position.y > height) {
+        if (position.y + shipHeight/2 >= height) {
             float tmp = position.y - height;
             position.y = position.y - tmp;
         }

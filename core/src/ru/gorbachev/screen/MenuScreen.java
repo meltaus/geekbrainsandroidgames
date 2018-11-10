@@ -27,14 +27,14 @@ public class MenuScreen extends Base2DScreen {
     public void show() {
         super.show();
         background = new Background(new Sprite(backgroundAtlas.findRegion("deepspace1")),
-                screenWeight, screenHeight);
+                screenWidth, screenHeight);
 
         buttonAtlas = new TextureAtlas(Gdx.files.internal("buttonYelow.atlas"));
         startButton = new Button(new Sprite(buttonAtlas.findRegion("StartButton")),
-                new Vector2(-150,0) ,screenWeight*4, screenHeight, 0.09f);
+                new Vector2(-150,0) , screenWidth *4, screenHeight, 0.09f);
         exitButton = new Button(new Sprite(buttonAtlas.findRegion("ExitButton")),
                 new Vector2(-150, 1.5f * (startButton.getButtonTexture().getY() - startButton.getButtonTexture().getHeight())),
-                screenWeight*4, screenHeight, 0.09f);
+                screenWidth *4, screenHeight, 0.09f);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class MenuScreen extends Base2DScreen {
         if (Gdx.input.justTouched()) {
             if (startButton.isMy(touch)) {
                 startButton.getButtonTexture().setScale(0.9f, 1f);
-                System.out.println("Start");
+                start2DGame.setScreen(new GameScreen()); // Переход к игре
             }
             if (exitButton.isMy(touch)) {
                 exitButton.getButtonTexture().setScale(0.9f, 1f);

@@ -28,7 +28,7 @@ public class Base2DScreen implements Screen, InputProcessor {
 
     private Vector2 touch;
 
-    protected float screenWeight;
+    protected float screenWidth;
     protected float screenHeight;
 
     protected Background background;
@@ -45,7 +45,7 @@ public class Base2DScreen implements Screen, InputProcessor {
         this.touch = new Vector2();
         backgroundAtlas = new TextureAtlas(Gdx.files.internal("background.atlas"));
         screenHeight = 1000f;
-        screenWeight = 1000f;
+        screenWidth = 1000f;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Base2DScreen implements Screen, InputProcessor {
 
         float aspect = width / (float) height;
         worldBounds.setHeight(screenHeight);
-        worldBounds.setWidth(screenWeight*aspect);
+        worldBounds.setWidth(screenWidth *aspect);
         MatrixUtils.calcTransitionMatrix(worldToGl, worldBounds, glBounds);
         batch.setProjectionMatrix(worldToGl);
         MatrixUtils.calcTransitionMatrix(screenToWorld, screenBounds, worldBounds);
