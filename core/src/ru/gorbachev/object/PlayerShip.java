@@ -10,7 +10,7 @@ public class PlayerShip extends StarShip {
     public PlayerShip(Sprite shipTexture, Vector2 position,
                   float width, float height, float resize_factor) {
         this.shipTexture = shipTexture;
-        this.position = position;
+        this.pos = position;
         this.width = width;
         this.height = height;
         this.resize_factor = resize_factor;

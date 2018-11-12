@@ -21,7 +21,7 @@ public class GameScreen extends Base2DScreen {
 
         shipAtlas = new TextureAtlas(Gdx.files.internal("ship.atlas"));
         playerShip = new PlayerShip(new Sprite(shipAtlas.findRegion("shipblue1")),
-                new Vector2(0, -screenWidth/2 + 50), screenWidth, screenHeight, 0.09f);
+                new Vector2(0, -screenWidth/2 + 50), screenWidth, screenHeight, 0.1f);
 
         background = new Background(new Sprite(backgroundAtlas.findRegion("deepspace2")),
                 screenWidth, screenHeight);
@@ -41,12 +41,13 @@ public class GameScreen extends Base2DScreen {
     @Override
     public void dispose() {
         super.dispose();
+        batch.dispose();
     }
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer) {
         if (Gdx.input.justTouched()) {
-            playerShip.moveShip(touch, 1);
+            playerShip.moveShip(touch, 1f, true, false);
         }
         return false;
     }
