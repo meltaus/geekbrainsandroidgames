@@ -18,8 +18,7 @@ public class StarShip {
     private float shipWidth;
     private float shipHeight;
 
-    private boolean horizontalMove;
-    private boolean verticalMove;
+    private boolean stat;
 
     protected void initShip() {
         shipWidth = width *resize_factor;
@@ -27,28 +26,28 @@ public class StarShip {
         touch = new Vector2(pos);
         v = new Vector2();
         buf = new Vector2();
+        stat = false;
     }
 
     public void render(SpriteBatch batch) {
-        buf.set(touch);
-        if (buf.sub(pos).len() > v.len()) {
-            pos.add(v);
-        } else {
-            pos.set(touch);
+        if (stat) {
+            buf.set(touch);
+            if (buf.sub(pos).len() > v.len()) {
+                pos.add(v);
+            } else {
+                pos.set(touch);
+            }
         }
         batch.draw(shipTexture, pos.x - (shipWidth/2), pos.y - (shipHeight/2), shipWidth, shipHeight);
     }
 
-    public void moveShip(Vector2 newPosition, float deltaV, boolean horizontalMove, boolean verticalMove) {
-        if (!horizontalMove) {
-            newPosition.set(pos.x, newPosition.y);
-        }
-        if (!verticalMove) {
-            newPosition.set(newPosition.x, pos.y);
-        }
-        this.touch = newPosition;
+    public void moveShip(Vector2 newPosition, float deltaV, boolean stat) {
+        this.touch = new Vector2(newPosition);
         v.set(touch.cpy().sub(pos).scl(deltaV*0.01f));
-        this.horizontalMove = horizontalMove;
-        this.verticalMove = verticalMove;
+        this.stat = stat;
+        System.out.println(this.stat);
+    }
+    public void stopShip(boolean stat) {
+        this.stat = stat;
     }
 }
