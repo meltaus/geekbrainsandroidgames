@@ -1,5 +1,6 @@
 package ru.gorbachev.base;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -31,11 +32,13 @@ public class StarShip {
 
     public void render(SpriteBatch batch) {
         if (stat) {
-            buf.set(touch);
-            if (buf.sub(pos).len() > v.len()) {
-                pos.add(v);
-            } else {
-                pos.set(touch);
+            if (checkShipInScreen()) {
+                buf.set(touch);
+                if (buf.sub(pos).len() > v.len()) {
+                    pos.add(v);
+                } else {
+                    pos.set(touch);
+                }
             }
         }
         batch.draw(shipTexture, pos.x - (shipWidth/2), pos.y - (shipHeight/2), shipWidth, shipHeight);
@@ -45,9 +48,19 @@ public class StarShip {
         this.touch = new Vector2(newPosition);
         v.set(touch.cpy().sub(pos).scl(deltaV*0.01f));
         this.stat = stat;
-        System.out.println(this.stat);
     }
     public void stopShip(boolean stat) {
         this.stat = stat;
+    }
+
+    private boolean checkShipInScreen() {
+        boolean result = true;
+        if (pos.x == -Gdx.graphics.getWidth() || pos.x + shipTexture.getWidth() == Gdx.graphics.getWidth()) {
+            result = false;
+        }
+        if (pos.y == -Gdx.graphics.getHeight() || pos.y + shipTexture.getHeight() == Gdx.graphics.getHeight()) {
+            result = false;
+        }
+        return result;
     }
 }
